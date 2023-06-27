@@ -1,0 +1,250 @@
+{include file='public/header'/}
+<main class="lyear-layout-content">
+    <div class="container-fluid p-t-15">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <header class="card-header">
+                        <div class="card-title">接口列表列表</div>
+                    </header>
+                    <div class="card-body">
+                        <p>当您将任何一个接口删除时，您所对接正在使用对应的接口将无法得到正常响应！！！</p>
+                        <p>我想使用子域对接？将子域解析到服务器，然后修改config目录下的app.php下的域名绑定即可如为了解请到官网查看说明</p>
+                        <div id="toolbar" class="toolbar-btn-action">
+                            <button id="btn_add" data-toggle="modal" data-target="#exampleModal" type="button"
+                                class="btn btn-primary m-r-5">
+                                <span class="mdi mdi-plus" aria-hidden="true"></span>新增
+                            </button>
+                            <button id="btn_edit" type="button" onclick="qstatus()" class="btn btn-success m-r-5">
+                                <span class="mdi mdi-check" aria-hidden="true"></span>启用
+                            </button>
+                            <button id="btn_edit" type="button" onclick="jstatus()" class="btn btn-warning m-r-5">
+                                <span class="mdi mdi-block-helper" aria-hidden="true"></span>禁用
+                            </button>
+                            <button id="btn_delete" type="button" onclick="del()" class="btn btn-danger">
+                                <span class="mdi mdi-window-close" aria-hidden="true"></span>删除
+                            </button>
+                        </div>
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title" id="exampleModalLabel">添加接口</h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="recipient-name" class="col-form-label">接口操作:</label>
+                                            <select class="custom-select" name="operation" required>
+                                                <option value="info">项目信息</option>
+                                                <option value="register">用户注册</option>
+                                                <option value="login">用户登录</option>
+                                                <option value="palpitate">用户心跳</option>
+                                                <option value="changePassword">密码修改</option>
+                                                <option value="user_toup">用户充值</option>
+                                                <option value="kami_login">卡密登录</option>
+                                                <option value="getUserInfo">用户信息</option>
+                                                <option value="user_sgin">用户签到</option>
+                                                <option value="kami_login">卡密签到</option>
+                                                <option value="getkamiInfo">卡密查询</option>
+                                                <option value="vip_ver">会员验证</option>
+                                                <option value="dcode_login">双卡登录</option>
+                                                <option value="docde_unbind">双卡解绑</option>
+                                                <option value="dcode_info">双卡信息</option>
+                                                <option value="dcode_sgin">双卡签到</option>
+                                                <option value="scode_logout">单卡注销</option>
+                                                <option value="token_change">Token更新</option>
+                                                <option value="user_mess">用户消息</option>
+                                                <option value="notice">项目通知</option>
+                                            </select>
+                                        </div>
+                                        <label for="recipient-name" class="col-form-label">归属项目:</label>
+                                        <select class="custom-select" name="pid" required>
+                                            {volist name="plist" id="projectlist"}
+                                            <option value="{$projectlist.id}">{$projectlist.name}</option>
+                                            {/volist}
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                        <button type="button" onclick="apis()" class="btn btn-primary">添加</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" id="check-all">
+                                                    <label class="custom-control-label" for="check-all"></label>
+                                                </div>
+                                            </th>
+                                            <th>接口ID</th>
+                                            <th>项目ID</th>
+                                            <th>接口操作</th>
+                                            <th>接口地址</th>
+                                            <th>生成时间</th>
+                                            <th>接口状态</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {volist name='list' id='code'}
+                                        <tr>
+                                            <td>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input ids" name="ids[]"
+                                                        value="{$code.id}" id="ids-{$code.id}">
+                                                    <label class="custom-control-label" for="ids-{$code.id}"></label>
+                                                </div>
+                                            </td>
+                                            <td>{$code.id}</td>
+                                            <td>{$code.pid}</td>
+                                            <td>{$code.operation}</td>
+                                            <td>{$url}/api/{$code.code}</td>
+                                            <td>{$code.time}</td>
+                                            <td>{if $code.status == 'y'}正常{else}禁用{/if}</td>
+                                        </tr>
+                                        {/volist}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {$page|raw}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{include file='public/footer'/}
+<script type="text/javascript" src="/static/js/jquery-confirm/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap-table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript">
+    function apis() {
+        var operation = $("select[name='operation']").val();//1
+        var pid = $("select[name='pid']").val();//1
+        $.post("{:url('generate')}", {
+            operation: operation,
+            pid: pid
+        }, function (res) {
+            if (res.code == 200) {
+                showNotify('添加成功~', 'success');
+            } else {
+                showNotify(res.msg, 'danger');
+            }
+        }, 'json')
+    }
+
+    function del() {
+        var id_array = new Array();
+        $("input[name='ids[]']:checked").each(function () {
+            id_array.push($(this).val());
+        });
+        var url = window.location.href;
+        let t = window.jQuery;
+        if (id_array.length <= 0) {
+            showNotify('请选择数据', 'danger');
+            return false;
+        }
+        $("#qstatus").attr("disabled", true).css("pointer-events", "none");
+        console.log(id_array);
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "api/del",
+            data: {
+                id: id_array
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    showNotify(data.msg, 'success');
+                } else {
+                    showNotify(data.msg, 'danger');
+                }
+                window.setTimeout("window.location='" + url + "'", 1000);
+            }
+        });
+        return false;
+    }
+
+    function qstatus() {
+        var id_array = new Array();
+        $("input[name='ids[]']:checked").each(function () {
+            id_array.push($(this).val());
+        });
+        var url = window.location.href;
+        let t = window.jQuery;
+        if (id_array.length <= 0) {
+            showNotify('请选择数据', 'danger');
+            return false;
+        }
+        $("#qstatus").attr("disabled", true).css("pointer-events", "none");
+        console.log(id_array);
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "api/qstatus",
+            data: {
+                id: id_array
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    showNotify(data.msg, 'success');
+                } else {
+                    showNotify(data.msg, 'danger');
+                }
+                window.setTimeout("window.location='" + url + "'", 1000);
+            }
+        });
+        return false;
+    }
+
+    function jstatus() {
+        var id_array = new Array();
+        $("input[name='ids[]']:checked").each(function () {
+            id_array.push($(this).val());
+        });
+        var url = window.location.href;
+        let t = window.jQuery;
+        if (id_array.length <= 0) {
+            showNotify('请选择数据', 'danger');
+            return false;
+        }
+        $("#qstatus").attr("disabled", true).css("pointer-events", "none");
+        console.log(id_array);
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "api/jstatus",
+            data: {
+                id: id_array
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.code == 200) {
+                    showNotify(data.msg, 'success');
+                } else {
+                    showNotify(data.msg, 'danger');
+                }
+                window.setTimeout("window.location='" + url + "'", 1000);
+            }
+        });
+        return false;
+    }
+</script>
+

@@ -1,0 +1,213 @@
+<!--
+ * @Author       : Lucifer
+ * @Date         : 2022-05-06 15:41:44
+ * @LastEditTime : 2022-07-01 20:30:25
+ * @FilePath     : \yiyanyun\app\admin\view\index.html
+-->
+
+{include file='public/header'/}
+<main class="lyear-layout-content">
+    <div class="container-fluid p-t-15">
+
+        <div class="row">
+            <div class="col-md-6 col-xl-3">
+                <!-- <div class="card bg-primary text-white"> -->
+                <div class="card">
+                    <div class="card-body clearfix text-center">
+                        <p class="text-center"><span class="img-avatar img-avatar-48 bg-translucent"><i
+                                    class="mdi mdi-account-circle fs-22"></i></span></p>
+                        <div class="text-center">
+                            <span class="fs-22 lh-22" id="user">{$users} 位</span>
+                        </div>
+                        <div class="text-center"><b>用户总数</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <!-- <div class="card bg-danger text-white"> -->
+                <div class="card">
+                    <div class="card-body clearfix">
+                        <p class="text-center"><span class="img-avatar img-avatar-48 bg-translucent"><i
+                                    class="mdi mdi-credit-card-outline fs-22"></i></span></p>
+                        <div class="text-center">
+                            <span class="fs-22 lh-22">{$dcode} 张</span>
+                        </div>
+                        <div class="text-center"><b>单卡总数</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <!-- <div class="card bg-success text-white"> -->
+                <div class="card">
+                    <div class="card-body clearfix">
+                        <p class="text-center"><span class="img-avatar img-avatar-48 bg-translucent"><i
+                                    class="mdi mdi-credit-card-multiple-outline fs-22"></i></span></p>
+                        <div class="text-center">
+                            <span class="fs-22 lh-22">{$use_dcode} 张</span>
+                        </div>
+                        <div class="text-center"><b>双卡总数</b></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+                <!-- <div class="card bg-purple text-white"> -->
+                <div class="card">
+                    <div class="card-body clearfix">
+                        <p class="text-center"><span class="img-avatar img-avatar-48 bg-translucent"><i
+                                    class="mdi mdi-account-group fs-22"></i></span></p>
+                        <div class="text-center">
+                            <span class="fs-22 lh-22">{$agent} 位</span>
+                        </div>
+                        <div class="text-center"><b>代理总数</b></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <div class="card">
+                    <header class="card-header">
+                        <div class="card-title"><b>数据概览</b> </div>
+                    </header>
+                    <div class="card-body">
+                        <canvas id="chart-vbar-2" width="400" height="150"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <header class="card-header">
+                        <div class="card-title"><b>数据占比</b></div>
+                    </header>
+                    <div class="card-body">
+                        <canvas id="chart-doughnut" width="280" height="350"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><b>管理模块</b></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="/static/images/loading-logo.png"
+                                style="width: 100px;" class="rounded" alt="...">
+                            <p class="text-center">
+                            <h5>你好！管理员</h5>
+                            </p>
+                            <hr>
+                            <p>生命不息 代码不停</p>
+                            <hr>
+                            <a type="button" href="/admin/admin" class="btn btn-outline-pink">管理设置</a>
+                            <a type="button" href="/admin/yun" class="btn btn-outline-purple">云端绑定</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title"><b>最近活跃</b></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-active">
+                                    <tr>
+                                        <td>日志ID</td>
+                                        <td>登录用户</td>
+                                        <td>登录时间</td>
+                                        <td>登录状态</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {volist name='active' id='user'}
+                                    <tr>
+                                        <td>{$user.id}</td>
+                                        <td>{$user.uid}</td>
+                                        <td>{$user.time}</td>
+                                        <td>
+                                            <a class="example-p-4" style="color: coral;" href="#!">详情</a>
+                                        </td>
+                                    </tr>
+                                    {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</main>
+{include file='public/footer'/}
+
+
+<script>
+    new Chart($("#chart-vbar-2"), {
+        type: 'bar',
+        data: {
+            labels: ["激活单卡", "激活双卡", "项目总数", "用户总数", "VIP用户"],
+            datasets: [{
+                label: "数值",
+                backgroundColor: "rgba(173,225,47,0.5)",
+                borderColor: "rgba(0,0,0,0)",
+                hoverBackgroundColor: "rgba(204, 217, 255,0.7)",
+                hoverBorderColor: "rgba(0,0,0,0)",
+                data: ["{$use_code}", "{$use_dcode}", "{$pro}", "{$users}", "{$vip_user}"]
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+    new Chart($("#chart-doughnut"), {
+        type: 'doughnut',
+        data: {
+            labels: ["用户", "单卡", "双卡"],
+            datasets: [{
+                data: ["{$users}", "{$code}", "{$dcode}"],
+                backgroundColor: ['rgba(255,99,132,1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)']
+            }]
+        },
+        options: {
+            responsive: true
+        }
+    });
+
+</script>
+
+
+<script src="https://cdn.bootcss.com/countup.js/1.9.3/countUp.js"></script>
+
+<script type="text/javascript">
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: ',',
+        decimal: '.',
+    };
+    var user = new CountUp('user', 0, '{$users}', 0, 5, options);
+    if (!user.error) {
+        user.start();
+    } else {
+        console.error(user.error);
+    }
+</script>

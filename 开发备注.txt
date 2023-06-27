@@ -1,0 +1,8 @@
+
+API数据加密类型
+    0 => 不加密
+    1 => AES-128-ECB
+    2 => BASE64
+
+
+text-right

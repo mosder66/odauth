@@ -1,0 +1,103 @@
+<!--
+ * @Author       : Lucifer
+ * @Date         : 2022-04-10 20:27:36
+ * @LastEditTime : 2022-05-13 10:15:51
+ * @FilePath     : \yiyanyun\app\admin\view\useredit.html
+-->
+{include file='public/header'/}
+
+<main class="lyear-layout-content">
+
+    <div class="container-fluid p-t-15">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">用户管理</a></li>
+                <li class="breadcrumb-item"><a href="/admin/user">用户列表</a></li>
+                <li class="breadcrumb-item active" aria-current="page">用户编辑</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-lg-6" style="margin: auto;">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="/static/images/users/avatar.jpg" class="rounded" alt="...">
+                            <div style="margin-top:20px;">
+                                <p>用户名:{$user}</p>
+                                <p>用户ID:{$id}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <header class="card-header">
+                        <div class="card-title">用户信息</div>
+                    </header>
+                    <div class="card-body">
+                        <form method="" action="#!" class="site-form">
+                            <div class="form-group">
+                                <label for="username">用户名</label>
+                                <input type="text" class="form-control" name="username" id="username" value="{$user}"
+                                    disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label for="nickname">昵称</label>
+                                <input type="text" class="form-control" name="nickname" id="nickname"
+                                    placeholder="未保存有昵称" value="{$nick}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">邮箱</label>
+                                <input type="email" class="form-control" name="email" id="email"
+                                    aria-describedby="emailHelp" placeholder="请输入正确的邮箱地址" value="{$mail}">
+                            </div>
+                            <div class="form-group">
+                                <label for="remark">简介</label>
+                                <textarea class="form-control" name="remark" placeholder="暂无简介..." id="remark" rows="3"
+                                    disabled></textarea>
+                            </div>
+                            <button type="button" onclick="user()" class="btn btn-outline-yellow btn-block">保存</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <header class="card-header">
+                        <div class="card-title">用户相关订单</div>
+                    </header>
+                    <div class="card-body">
+                        <table id="tb_departments"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{include file='public/footer'/}
+<script type="text/javascript" src="/static/js/jquery-confirm/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap-table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript">
+
+    function user() {
+        id = '{$id}';
+        email = $("#email").val();
+        nickname = $("#nickname").val();
+        $.post("{:url('edits')}", { email: email, nickname: nickname, id: id }, function (res) {
+            if (res.code == 200) {
+                showNotify(res.msg, 'success');
+                // setTimeout("location.href='/admin/index'", 3000);
+            } else {
+                showNotify(res.msg, 'danger');
+            }
+        }, 'json')
+    }
+</script>

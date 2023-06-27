@@ -1,0 +1,54 @@
+<!--
+ * @Author: Lucifer
+ * @Date: 2022-04-10 20:27:36
+ * @LastEditTime: 2022-04-24 15:14:33
+ * @FilePath: \yiyanyun\app\admin\view\yun.html
+-->
+{include file='public/header'/}
+<main class="lyear-layout-content">
+
+  <div class="container-fluid p-t-15">
+    <div class="row">
+      <div class="col-md-4" style="margin: auto;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">云端绑定</div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleFormControlInput1">请输入云账号</label>
+              <input type="test" class="form-control" name="user" id="user" placeholder="请输入邮箱地址">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">请输入云密码</label>
+              <input type="password" class="form-control" name="password" id="password" placeholder="请输入邮箱地址">
+            </div>
+            <button type="button" onclick="login()" class="btn btn-outline-info btn-block">登录绑定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4" style="margin: auto;">
+        <div class="callout callout-success mb-3">注意：云账号不是本地的管理员账号，如您没有云账号请点击<a href="http://yun.yiyanyun.top" target="">此处打开http://yun.yiyanyun.top/进行前往注册</a><br>我不登陆有什么影响吗？答：没有任何影响，但是推荐登录。</div>
+      </div>
+    </div>
+  </div>
+</main>
+{include file='public/footer'/}
+
+<script>
+  function login() {
+    user = $("#user").val();
+    password = $("#password").val();
+    $.post("{:url('login')}", { user: user, password: password }, function (res) {
+      if (res.code == 200) {
+        showNotify(res.msg, 'success');
+        setTimeout("location.href='/admin/index'", 3000);
+      } else {
+        showNotify(res.msg, 'danger');
+      }
+    }, 'json')
+  }
+</script>

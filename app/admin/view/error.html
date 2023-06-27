@@ -1,0 +1,49 @@
+<!--
+ * @Author       : Lucifer
+ * @Date         : 2022-05-06 10:58:56
+ * @LastEditTime : 2022-06-01 15:49:46
+ * @FilePath     : \yiyanyun\app\admin\view\error.html
+-->
+{include file='public/header'/}
+
+<main class="lyear-layout-content">
+
+    <div class="container-fluid p-t-15">
+
+        <div class="row">
+            <div class="col-md-4" style="margin: auto;">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <div class="card-title">页面错误</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <p>
+                            <h3>页面错误</h3>
+                            </p>
+                            <p>错误原因：<a href="" class="text-danger">{$reason}</a></p>
+                        </div>
+                        <button type="button" class="btn btn-outline-info btn-block">返回页面</button>
+                        <button type="button" onclick="yun_logout()"
+                            class="btn btn-outline-purple btn-block">清理云端</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{include file='public/footer'/}
+
+<script>
+    function yun_logout() {
+        $.post("{:url('/admin/yun/logout')}", {}, function (res) {
+            if (res.code == 200) {
+                showNotify(res.msg, 'success');
+                setTimeout("location.href='/admin/index'", 3000);
+            } else {
+                showNotify(res.msg, 'danger');
+            }
+        })
+    }
+</script>

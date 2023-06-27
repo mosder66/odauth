@@ -1,0 +1,81 @@
+<!--
+ * @Author: Lucifer
+ * @Date: 2022-04-12 09:22:42
+ * @LastEditTime: 2022-04-12 09:53:18
+ * @FilePath: \yiyanyun\app\agent\view\money.html
+-->
+
+{include file="public/header"}
+<main class="lyear-layout-content">
+
+    <div class="container-fluid p-t-15">
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">余额充值</div>
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" novalidate>
+                    <div class="callout callout-info mb-3">代理您好！<a href="#!" class="text-pink">选择充值项目吧！</a>元
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">充值金额</label>
+                        <input type="text" name="balance" class="form-control" id="balance" placeholder="请输入充值金额">
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" name="pro" required>
+                            {volist name="list" id="pid"}
+                            <option value="{$pid.id}">项目ID：{$pid.id} --- 所剩余额：{$pid.balance}</option>
+                            {/volist}}
+                        </select>
+                        <div class="invalid-feedback">请选择一项</div>
+                    </div>
+                    <div class="form-group">
+                        <select class="custom-select" name="type" required>
+                            <option value="1">微信支付</option>
+                            <option value="2">支付宝付</option>
+                        </select>
+                        <div class="invalid-feedback">请选择一项</div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="">
+                            <button type="button" onclick="bxsubmit()" class="btn btn-outline-success btn-block">发起支付
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">温馨提示</div>
+            </div>
+            <div class="card-body">
+                <form class="needs-validation" novalidate>
+                    <div class="callout callout-info mb-3">欢迎充值，当您的卡密额度不足或项目额度不足等账户余额将能够及时补上，可开启VIP自动续费！</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{include file="public/footer"}
+<script>
+    function bxsubmit() {
+        balance = $("#balance").val();
+        var type = $("select[name='type']").val();//1
+        $.post("{:url('balance/pay')}", {
+            balance: balance,
+            type: type
+        }, function (res) {
+            if (res.code == 200) {
+                showNotify('发起成功正在准备支付', 'success');
+                window.location.href = res.url;
+                // window.open(res.msg);
+            } else {
+                showNotify(res.msg, 'danger');
+            }
+        }, 'json')
+    }
+</script>

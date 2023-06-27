@@ -1,0 +1,60 @@
+{include file='public/header'/}
+
+<!--页面主要内容-->
+<main class="lyear-layout-content">
+
+  <div class="container-fluid p-t-15">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card wave wave-animate-slow wave-primary">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fs-22"></i></span>
+              <span class="fs-22 lh-22">{$code} 张</span>
+            </div>
+            <div class="text-right">卡密总数</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card wave wave-animate wave-danger">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fs-22"></i></span>
+              <span class="fs-22 lh-22">{$use_code} 张</span>
+            </div>
+            <div class="text-right">未激活卡</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card wave wave-animate wave-infos">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fs-22"></i></span>
+              <span class="fs-22 lh-22">{$id} 位</span>
+            </div>
+            <div class="text-right">我的ID</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card wave wave-animate-fast wave-info">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-comment-outline fs-22"></i></span>
+              <span class="fs-22 lh-22">{$pro} 个</span>
+            </div>
+            <div class="text-right">项目总数</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+<!--End 页面主要内容-->
+</div>
+</div>
+
+{include file='public/footer'/}

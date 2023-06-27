@@ -1,0 +1,64 @@
+<!--
+ * @Author: Lucifer
+ * @Date: 2022-04-10 20:27:36
+ * @LastEditTime : 2022-06-01 15:15:31
+ * @FilePath     : \yiyanyun\app\admin\view\public\footer.html
+-->
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/popper.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/perfect-scrollbar.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.cookie.min.js"></script>
+<!-- 表单导向 -->
+<script type="text/javascript" src="/static/js/jquery.bootstrap.wizard.min.js"></script>
+<script type="text/javascript" src="/static/js/main.min.js"></script>
+<script type="text/javascript" src="/static/js/Chart.min.js"></script>
+<script type="text/javascript" src="/static/js/sha1.min.js"></script>
+<script type="text/javascript" src="/static/js/lyear-loading.min.js"></script>
+<script type="text/javascript" src="/static/js/app.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap-notify.min.js"></script>
+<!-- js弹窗的资源 -->
+<script type="text/javascript" src="/static/js/jquery-confirm/jquery-confirm.min.js"></script>
+<script>
+  // 生命周期监控
+  // orderlst = window.setInterval(function () {
+  //   $.alert({
+  //     title: '安全提醒',
+  //     content: '您已长时间未进行操作，如不需继续停留控制面板请及时退出登录保护好身份验证',
+  //     icon: 'mdi mdi-rocket',
+  //     animation: 'scale',
+  //     closeAnimation: 'scale',
+  //     buttons: {
+  //       okay: {
+  //         text: '退出',
+  //         btnClass: 'btn-blue',
+  //         action: function () {
+  //           // $.alert('一个非常关键的动作被 <strong>触发了!</strong>');
+  //         }
+  //       }
+  //     }
+  //   });
+  // }, 300000); 
+
+  function logout() {
+    $.alert({
+      title: '退出登录',
+      icon: 'mdi mdi-alert',
+      type: 'purple',
+      content: '你确定要退出且清空本次连接的会话吗 ~ ',
+      buttons: {
+        okay: {
+          text: '确认',
+          btnClass: 'btn-blue',
+          action: function () {
+            // 跳转退出
+            setTimeout("location.href='/admin/login/logout'", 1000);
+          }
+        }
+      }
+    });
+  }
+</script>
+</body>
+
+</html>

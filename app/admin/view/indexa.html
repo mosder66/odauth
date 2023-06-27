@@ -1,0 +1,256 @@
+{include file='public/header'/}
+
+<!--页面主要内容-->
+<main class="lyear-layout-content">
+
+  <div class="container-fluid p-t-15">
+
+    <div class="row">
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-primary text-white">
+          <div class="card-body clearfix">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i
+                  class="mdi mdi-credit-card-multiple-outline fs-22"></i></span>
+              <span class="fs-22 lh-22">{$dcode} 张</span>
+            </div>
+            <div class="text-right">双卡总数</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-danger text-white">
+          <div class="card-body clearfix">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i
+                  class="mdi mdi-credit-card-multiple fs-22"></i></span>
+              <span class="fs-22 lh-22">{$use_dcode} 张</span>
+            </div>
+            <div class="text-right">双卡激活</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-success text-white">
+          <div class="card-body clearfix">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i
+                  class="mdi mdi-alpha-v-box-outline fs-22"></i></span>
+              <span class="fs-22 lh-22">{$vip_user} 位</c>
+            </div>
+            <div class="text-right">VIP用户</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-xl-3">
+        <div class="card bg-purple text-white">
+          <div class="card-body clearfix">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account-group fs-22"></i></span>
+              <span class="fs-22 lh-22">{$user} 位</span>
+            </div>
+            <div class="text-right">用户总数</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3">
+        <!--begin::Iconbox-->
+        <div class="card wave wave-animate-slow wave-primary">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i
+                  class="mdi mdi-credit-card-outline fs-22"></i></span>
+              <span class="fs-22 lh-22">{$code} 张</span>
+            </div>
+            <div class="text-right">单卡总数</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card wave wave-animate wave-danger">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-credit-card fs-22"></i></span>
+              <span class="fs-22 lh-22">{$use_code} 张</span>
+            </div>
+            <div class="text-right">单卡激活</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card wave wave-animate wave-infos">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i class="mdi mdi-account-switch fs-22"></i></span>
+              <span class="fs-22 lh-22">{$agent} 位</span>
+            </div>
+            <div class="text-right">代理总数</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card wave wave-animate-fast wave-info">
+          <div class="card-body position-relative">
+            <div class="flex-box">
+              <span class="img-avatar img-avatar-48 bg-translucent"><i
+                  class="mdi mdi-projector-screen fs-22"></i></span>
+              <span class="fs-22 lh-22">{$pro} 个</span>
+            </div>
+            <div class="text-right">项目总数</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card">
+          <header class="card-header">
+            <div class="card-title">用户走向</div>
+          </header>
+          <div class="card-body">
+            <canvas id="chart-line-4" width="400" height="250"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card">
+          <header class="card-header">
+            <div class="card-title">数据走向</div>
+          </header>
+          <div class="card-body">
+            <canvas id="chart-vbar-1" width="400" height="250"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <header class="card-header">
+              <div class="card-title">系统信息</div>
+            </header>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <tbody>
+                    <tr>
+                      <td>服务系统</td>
+                      <td>{$version}</td>
+                    </tr>
+                    <tr>
+                      <td>服务器IP</td>
+                      <td>当前接入：{$ServerIP}</td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td>前端设计</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+<!--End 页面主要内容-->
+</div>
+</div>
+
+{include file='public/footer'/}
+
+<script>
+
+// 通过将图表的呈现代码写到函数里然后通过函数得到数据后再呈现，最后设置刷新函数
+// gbjzy(10, 5,54,23,12);
+  // var data_gbjzy = new Array(5);//要传入的数据数量
+  // function gbjzy() {//函数传入数据
+  //   if (data0 == data_gbjzy[0] && data1 == data_gbjzy[1]) {//由于我传入少,这样写方便
+  //     //也可以通过获取传入的所有数据,然后for循环判断是否一样
+  //     return null;
+  //   }
+  //   data_gbjzy = [10, 5,54,23,12];//把数据传入
+  //   //获取父级后重置
+  //   // document.getElementById("chart-line-4").parentElement.innerHTML = '<canvas id="chart-line-4" width="350" height="350" style="display: block; height: 280px; width: 280px;"></canvas>';
+  //   new Chart($("#chart-line-4"), {
+  //     type: 'line',
+  //     data: {
+  //       labels: ['{$time}', '{$time1}', '{$time2}', '{$time3}', '{$time4}'],
+  //       datasets: [{
+  //         label: "用户数据",
+  //         fill: true,
+  //         borderWidth: 3,
+  //         pointRadius: 4,
+  //         borderColor: "#36EBC1",
+  //         backgroundColor: "#87C7F13F",
+  //         pointBackgroundColor: "#EB364B",
+  //         pointBorderColor: "#EB3636",
+  //         pointHoverBackgroundColor: "#fff",
+  //         pointHoverBorderColor: "#5D36EB44",
+  //         data: [data0, data1, '{$data2}', '{$data3}', '{$data4}']
+  //       }]
+  //     },
+  //     options: {}
+  //   });
+  // }
+  // setTimeout("gbjzy(500,43,54,23,20)", 2000)//测试传入不同数据
+  // setTimeout("gbjzy(50,200)", 4000)
+  // setTimeout("gbjzy(50,200)", 6000)//测试传入相同数据
+
+  new Chart($("#chart-line-4"), {
+    type: 'line',
+    data: {
+      labels: ['{$time}', '{$time1}', '{$time2}', '{$time3}', '{$time4}'],
+      datasets: [{
+        label: "用户数据",
+        fill: true,
+        borderWidth: 3,
+        pointRadius: 4,
+        borderColor: "#36EBC1",
+        backgroundColor: "#87C7F13F",
+        pointBackgroundColor: "#EB364B",
+        pointBorderColor: "#EB3636",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "#5D36EB44",
+        data: ["{$data}", '{$data1}', '{$data2}', '{$data3}', '{$data4}']
+      }]
+    },
+    options: {}
+  });
+
+  new Chart($("#chart-vbar-1"), {
+    type: 'bar',
+    data: {
+      labels: ["单码卡密", "双卡卡密", "用户总数", "VIP用户", "代理总数"],
+      datasets: [{
+        label: "数据总数",
+        backgroundColor: "rgba(51,202,185,0.5)",
+        borderColor: "rgba(0,0,0,0)",
+        hoverBackgroundColor: "rgba(51,202,185,0.7)",
+        hoverBorderColor: "rgba(0,0,0,0)",
+        data: ['{$code}', '{$dcode}', '{$user}', '{$vip_user}', '{$agent}']
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: false
+          }
+        }]
+      }
+    }
+  });
+</script>
